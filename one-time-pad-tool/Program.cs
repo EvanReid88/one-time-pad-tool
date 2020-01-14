@@ -9,8 +9,8 @@ namespace one_time_pad_tool
         {
             OneTimePad otp = new OneTimePad();
             string dir = "C:\\Evan\\Projects\\C#\\one-time-pad-tool\\one-time-pad-tool\\";
-            otp.EncryptFile(dir + "testpdf.pdf", dir, dir, true);
-            otp.DecryptFile(dir + "testpdf_encrypted.pdf", dir, dir + "test_test_pad.txt", true);
+            otp.EncryptFile(dir + "testpdf.pdf", dir, dir);
+            otp.DecryptFile(dir + "encrypted_test.pdf", dir, dir + "test_pad.pdf");
             Console.WriteLine("Hello World!");
         }
     }
