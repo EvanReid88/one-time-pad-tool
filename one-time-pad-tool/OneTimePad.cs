@@ -11,10 +11,9 @@ namespace one_time_pad_tool
     // https://blog.bitscry.com/2018/07/05/pgp-encryption-and-decryption-in-c/
     class OneTimePad
     {
-
         static OneTimePad() { }
 
-        public static FileStream GeneratePad(int size, string pad_path)
+        private static FileStream GeneratePad(int size, string pad_path)
         {
             var random = new SecureRandom();
             random.SetSeed(BitConverter.GetBytes(Guid.NewGuid().GetHashCode() + int.MaxValue));
@@ -31,23 +30,16 @@ namespace one_time_pad_tool
             return fs;
         }
 
-        //public static byte[] GeneratePad(int size, string pad_path)
-        //{
-        //    var random = new SecureRandom();
-        //    random.SetSeed(BitConverter.GetBytes(Guid.NewGuid().GetHashCode() + int.MaxValue));
+        // TODO 
+        //public void ConvertPadToBase64()
+        //public void ConvertPadToBytes
 
-        //    byte[] pad = new byte[size];
-        //    random.NextBytes(pad);
-
-        //    return pad;
-        //}
-
-        // TODO public void ConvertPadBase64
-
-        public void EncryptFile(string file_path, string out_path, string pad_path, bool base64Pad = false)
+        public static void EncryptFile(string file_path, string out_path, string pad_path, bool base64Pad = false)
         {
             try
             {
+                // TODO pass bool to generatepad. generate pad will save key on disk and then this fn will open it up for reading
+
                 // TODO get file extension from path to determine names
                 using FileStream original_file = new FileStream(file_path, FileMode.Open, FileAccess.Read);
                 using FileStream pad_file = GeneratePad((int)original_file.Length, pad_path + "test_pad.pdf");
@@ -66,7 +58,6 @@ namespace one_time_pad_tool
                     encrypted_byte_bits.CopyTo(encrypted_byte, 0);
                     encrypted_file.Write(encrypted_byte);
                 }
-
             }
             catch (Exception e)
             {
@@ -74,7 +65,7 @@ namespace one_time_pad_tool
             }
         }
 
-        public void DecryptFile(string file_path, string out_path, string pad_path, bool base64Pad = false)
+        public static void DecryptFile(string file_path, string out_path, string pad_path, bool base64Pad = false)
         {
             try
             {
@@ -101,66 +92,5 @@ namespace one_time_pad_tool
                 Console.WriteLine("Failed to dencrypt file: " + e);
             }
         }
-
-        //public void EncryptFile(string file_path, string out_path, string pad_path, bool base64Pad = false)
-        //{
-        //    try
-        //    {
-
-        //        // TODO get file extension from path to determine names
-        //        byte[] original_bytes = File.ReadAllBytes(file_path);
-        //        byte[] pad_bytes = GeneratePad((int)original_bytes.Length, pad_path + "test_pad.pdf");
-        //        byte[] encrypted_bytes = new byte[(int)original_bytes.Length];
-
-        //        BitArray encrypted_bits = new BitArray(original_bytes);
-        //        BitArray pad_bits = new BitArray(pad_bytes);
-
-        //        encrypted_bits.Xor(pad_bits);
-
-        //        encrypted_bits.CopyTo(encrypted_bytes, 0);
-
-        //        if (base64Pad)
-        //        {
-        //            string pad = Convert.ToBase64String(pad_bytes);
-        //            File.WriteAllText(pad_path + "test_test_pad.txt", pad);
-        //        }
-        //        else
-        //        {
-        //            File.WriteAllBytes(pad_path + "test_test_pad.pdf", pad_bytes);
-        //        }
-
-        //        File.WriteAllBytes(out_path + "testpdf_encrypted.pdf", encrypted_bytes);
-
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Failed to encrypt file: " + e);
-        //    }
-        //}
-
-
-
-        //public void DecryptFile(string file_path, string out_path, string pad_path, bool base64Pad = false)
-        //{
-        //    try
-        //    {
-        //        byte[] original_bytes = File.ReadAllBytes(file_path);
-        //        byte[] pad = base64Pad ? Convert.FromBase64String(File.ReadAllText(pad_path)) : File.ReadAllBytes(pad_path);
-        //        byte[] decrypted_bytes = new byte[(int)original_bytes.Length];
-
-        //        BitArray encrypted_bits = new BitArray(original_bytes);
-        //        BitArray pad_bits = new BitArray(pad);
-
-        //        pad_bits.Xor(encrypted_bits);
-
-        //        pad_bits.CopyTo(decrypted_bytes, 0);
-
-        //        File.WriteAllBytes(out_path + "testpdf_decrypted.pdf", decrypted_bytes);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Failed to dencrypt file: " + e);
-        //    }
-        //}
     }
 }
