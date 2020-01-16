@@ -26,13 +26,14 @@ namespace one_time_pad_tool.gui
                 Console.WriteLine(menu_title);
 
                 // The loop that goes through all of the menu items.
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 for (c = 0; c < menuItems.Length; c++)
                 {
                     // If the current item number is our variable c, tab out this option.
                     // You could easily change it to simply change the color of the text.
                     if (curItem == c)
                     {
-                        Console.Write(">>");
+                        Console.Write(">> ");
                         Console.WriteLine(menuItems[c]);
                     }
                     // Just write the current option out if the current item is not our variable c.
@@ -41,6 +42,7 @@ namespace one_time_pad_tool.gui
                         Console.WriteLine(menuItems[c]);
                     }
                 }
+                Console.ForegroundColor = ConsoleColor.White;
 
                 // Waits until the user presses a key, and puts it into our object key.
                 Console.Write("\nSelect your choice with the arrow keys.");

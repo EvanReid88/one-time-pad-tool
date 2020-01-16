@@ -43,7 +43,7 @@ namespace one_time_pad_tool
                 // TODO get file extension from path to determine names
                 using FileStream original_file = new FileStream(file_path, FileMode.Open, FileAccess.Read);
                 using FileStream pad_file = GeneratePad((int)original_file.Length, pad_path + "test_pad.pdf");
-                using FileStream encrypted_file = new FileStream(out_path + "encrypted_test.pdf", FileMode.Create, FileAccess.ReadWrite);
+                using FileStream encrypted_file = new FileStream(out_path + "encrypted_test.pdf", FileMode.Create);
 
                 int file_byte, pad_byte;
                 while ((file_byte = original_file.ReadByte()) >= 0)
@@ -71,7 +71,7 @@ namespace one_time_pad_tool
             {
                 using FileStream encrypted_file = new FileStream(file_path, FileMode.Open, FileAccess.Read);
                 using FileStream pad_file = new FileStream(pad_path, FileMode.Open, FileAccess.Read);
-                using FileStream decrypted_file = new FileStream(out_path + "testpdf_decrypted.pdf", FileMode.Create, FileAccess.ReadWrite);
+                using FileStream decrypted_file = new FileStream(out_path + "testpdf_decrypted.pdf", FileMode.Create);
 
                 int file_byte, pad_byte;
                 while ((file_byte = encrypted_file.ReadByte()) >= 0)

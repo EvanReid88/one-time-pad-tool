@@ -7,11 +7,12 @@ using one_time_pad_tool.gui;
 
 namespace one_time_pad_tool.pages
 {
-    class PadOptionsPage: Page
+    class FileOptionsPage : Page
     {
         private string[] args;
-        public PadOptionsPage(Program program, string[] args)
-            : base("Pad Options", program)
+
+        public FileOptionsPage(Program program, string[] args)
+            : base("File Options", program)
         {
             this.args = args;
         }
@@ -19,19 +20,20 @@ namespace one_time_pad_tool.pages
         public override void Display()
         {
             base.Display();
-
+            // TODO make into method
             string breadcrumb = null;
             foreach (var title in Program.History.Select((page) => page.Title).Reverse())
                 breadcrumb += title + " > ";
             breadcrumb = breadcrumb.Remove(breadcrumb.Length - 3);
 
+
             string[] options = { "Yes", "No", "Back <--" };
 
-            string header_padoptions = breadcrumb + "\n---\n\nSave pad as base64 string?\n";
-            int pad_option = ConsoleHelper.MultipleChoice(true, options, header_padoptions);
+            string header_deletefile = breadcrumb + "\n---\n\nDelete original file?\n";
+            int deletefile_option = ConsoleHelper.MultipleChoice(true, options, header_deletefile);
 
-            Program.AddPage(new EncryptPage(Program, args));
-            Program.NavigateTo<EncryptPage>();
+            Program.AddPage(new PadOptionsPage(Program, args));
+            Program.NavigateTo<PadOptionsPage>();
         }
     }
 }

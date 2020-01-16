@@ -14,7 +14,7 @@ namespace one_time_pad_tool
             : base("One Time Pad File Encryption", breadcrumbHeader: true)
         {
             AddPage(new MainPage(this));
-            AddPage(new EncryptPage(this));
+            AddPage(new FilePage(this));
             SetPage<MainPage>();
         }
     }

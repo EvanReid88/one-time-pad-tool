@@ -21,7 +21,7 @@ namespace one_time_pad_tool.pages
 
             if (option == 0)
             {
-                Program.NavigateTo<EncryptPage>();
+                Program.NavigateTo<FilePage>();
             } 
             //else
             //{
