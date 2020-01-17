@@ -31,6 +31,11 @@ namespace one_time_pad_tool.pages
 
             string header_deletefile = breadcrumb + "\n---\n\nDelete original file?\n";
             int deletefile_option = ConsoleHelper.MultipleChoice(true, options, header_deletefile);
+ 
+            if (deletefile_option != 2)
+            {
+                args[4] = deletefile_option.ToString();
+            }
 
             Program.AddPage(new PadOptionsPage(Program, args));
             Program.NavigateTo<PadOptionsPage>();

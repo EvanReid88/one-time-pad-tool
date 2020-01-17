@@ -11,7 +11,6 @@ namespace one_time_pad_tool.pages
         public MainPage(Program program)
             : base("One Time Pad Tool", program) { 
         }
-
         public override void Display()
         {
             base.Display();

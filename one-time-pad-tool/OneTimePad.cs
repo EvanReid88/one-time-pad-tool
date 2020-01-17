@@ -2,7 +2,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace one_time_pad_tool
@@ -33,6 +35,33 @@ namespace one_time_pad_tool
         // TODO 
         //public void ConvertPadToBase64()
         //public void ConvertPadToBytes
+
+        public static void SecureDelete(string file_path)
+        {
+            bool isWindows = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+
+            // TODO add linux, osx functionality
+            if (isWindows)
+            {
+                try
+                {
+                    Process p = new Process();
+                    p.StartInfo = new ProcessStartInfo("cmd", "sdelete -p 2 -r -s -nobanner " + file_path)
+                    {
+                        RedirectStandardOutput = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    };
+                    p.Start();
+                    p.WaitForExit();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Failed to delete original file using SDelete: " + e);
+                }
+
+            }
+        }
 
         public static void EncryptFile(string file_path, string out_path, string pad_path, bool base64Pad = false)
         {
