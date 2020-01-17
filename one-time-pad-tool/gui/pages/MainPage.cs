@@ -15,7 +15,7 @@ namespace one_time_pad_tool.pages
         {
             base.Display();
 
-            string[] options = new string[] { "OTP Encrypt", "OTP Decrypt" };
+            string[] options = new string[] { "OTP Encrypt", "OTP Decrypt", "Exit" };
             int option = ConsoleHelper.MultipleChoice(true, options, this.Title + "\n---\n");
 
             if (option == 0)

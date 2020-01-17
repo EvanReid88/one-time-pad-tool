@@ -5,11 +5,8 @@ using System.Text;
 
 namespace one_time_pad_tool.gui
 {
-   //https://www.dreamincode.net/forums/topic/365540-Console-Menu-with-Arrowkeys/
     public class ConsoleHelper
     {
-        int counter;
-
         // source: https://www.dreamincode.net/forums/topic/365540-Console-Menu-with-Arrowkeys/
         public static int MultipleChoice(bool canCancel, string[] menuItems, string menu_title)
         {
@@ -31,7 +28,7 @@ namespace one_time_pad_tool.gui
                 {
                     // If the current item number is our variable c, tab out this option.
                     // You could easily change it to simply change the color of the text.
-                    if (menuItems[c] == "Back")
+                    if (menuItems[c] == "Back" || menuItems[c] == "Exit")
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                     } else

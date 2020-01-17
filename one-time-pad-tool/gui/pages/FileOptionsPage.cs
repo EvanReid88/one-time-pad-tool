@@ -29,7 +29,7 @@ namespace one_time_pad_tool.pages
 
             string[] options = { "Yes", "No", "Back" };
 
-            string header_deletefile = breadcrumb + "\n---\n\nDelete original file?\n";
+            string header_deletefile = breadcrumb + "\n---\n\nDelete original file? (Cannot be undone)\n";
             int deletefile_option = ConsoleHelper.MultipleChoice(true, options, header_deletefile);
  
             if (deletefile_option != 2)

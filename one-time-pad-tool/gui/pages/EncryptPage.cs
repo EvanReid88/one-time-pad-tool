@@ -20,21 +20,30 @@ namespace one_time_pad_tool.pages
         public override void Display()
         {
             base.Display();
-            Console.WriteLine("\nEncrypting...\n"); // TODO spinner
+
+            // TODO make global print with colors method
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("\nEncrypting..."); // TODO spinner
+            Console.ForegroundColor = ConsoleColor.White;
 
             OneTimePad.EncryptFile(args[0], args[1], args[2]);
 
             if (Int32.Parse(args[4]) == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\nSecurely Deleting Original File...");
+                Console.ForegroundColor = ConsoleColor.White;
                 OneTimePad.SecureDelete(args[0]);
             }
 
-            Console.Clear();
-            base.Display();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nDone!\n");
 
-            Thread.Sleep(1000); // TODO wait till user presses any button to return to menu
-            Program.NavigateTo<MainPage>();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Press any key to return home");
+            Console.ReadLine();
+
+            Program.NavigateHome();
         }
     }
 }

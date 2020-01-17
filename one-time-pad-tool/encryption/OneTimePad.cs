@@ -45,17 +45,19 @@ namespace one_time_pad_tool
             {
                 try
                 {
-                    Process p = new Process
+                    //Process p = new Process();
+                    ProcessStartInfo StartInfo = new ProcessStartInfo("sdelete", "-p 2 -r -s -nobanner " + file_path)
                     {
-                        StartInfo = new ProcessStartInfo("cmd", "sdelete -p 2 -r -s -nobanner " + file_path)
-                        {
-                            RedirectStandardOutput = true,
-                            UseShellExecute = false,
-                            CreateNoWindow = true
-                        }
+                        RedirectStandardOutput = false,
+                        UseShellExecute = false,
+                        CreateNoWindow = true
                     };
-                    p.Start();
+                    Process p = Process.Start(StartInfo);
                     p.WaitForExit();
+                    //if (p != null)
+                    //{
+                    //    p.WaitForExit();
+                    //}
                 }
                 catch (Exception e)
                 {

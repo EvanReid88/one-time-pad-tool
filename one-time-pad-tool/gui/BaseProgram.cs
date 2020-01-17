@@ -8,9 +8,9 @@ using one_time_pad_tool.pages;
 
 namespace one_time_pad_tool
 {
-    class OneTimePadTool : Program
+    class BaseProgram : Program
     {
-        public OneTimePadTool() 
+        public BaseProgram() 
             : base("One Time Pad File Encryption", breadcrumbHeader: true)
         {
             AddPage(new MainPage(this));

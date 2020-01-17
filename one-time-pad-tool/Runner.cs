@@ -8,7 +8,7 @@ namespace one_time_pad_tool
     {
         static void Main(string[] args)
         {
-            new OneTimePadTool().Run();
+            new BaseProgram().Run();
         }
     }
 }
