@@ -7,8 +7,6 @@ namespace one_time_pad_tool.pages
 {
     class FilePage : Page
     {
-        string tip = "(Type 'back' to go back to last page)";
-
         public FilePage(Program program)
             : base("Encrypt", program) {
         }
@@ -19,14 +17,18 @@ namespace one_time_pad_tool.pages
 
             string[] args = new string[5];
 
-            string enter_file_path = "Enter path of file to encrypt: " + tip;
-            string enter_pad_path = "Enter path of directory to save one-time-pad: " + tip;
-            string enter_outfile_path = "Enter path of directory to save encrypted file: " + tip;
+            string enter_file_path = "Enter path of file to encrypt: ";
+            string enter_pad_path = "Enter path of directory to save one-time-pad: ";
+            string enter_outfile_path = "Enter path of directory to save encrypted file: ";
 
             // for decryption
             //        enter_file_path = "Enter path of file to decrypt: ";
             //        enter_pad_path = "Enter one-time-pad file path";
             //        enter_outfile_path = "Enter path of directory to save decrypted file";
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Type 'back' to go to last page");
+            Console.ForegroundColor = ConsoleColor.White;
 
             // TODO validate path input, navigate back if user types "back"
             Console.WriteLine("\n" + enter_file_path);

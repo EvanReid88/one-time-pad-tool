@@ -25,10 +25,19 @@ namespace one_time_pad_tool.pages
                 breadcrumb += title + " > ";
             breadcrumb = breadcrumb.Remove(breadcrumb.Length - 3);
 
-            string[] options = { "Yes", "No", "Back <--" };
+            string[] options = { "Yes", "No", "Back" };
 
             string header_padoptions = breadcrumb + "\n---\n\nSave pad as base64 string?\n";
             int pad_option = ConsoleHelper.MultipleChoice(true, options, header_padoptions);
+
+            if (pad_option != 2)
+            {
+
+            }
+            else
+            {
+                Program.NavigateBack();
+            }
 
             Program.AddPage(new EncryptPage(Program, args));
             Program.NavigateTo<EncryptPage>();

@@ -45,12 +45,14 @@ namespace one_time_pad_tool
             {
                 try
                 {
-                    Process p = new Process();
-                    p.StartInfo = new ProcessStartInfo("cmd", "sdelete -p 2 -r -s -nobanner " + file_path)
+                    Process p = new Process
                     {
-                        RedirectStandardOutput = true,
-                        UseShellExecute = false,
-                        CreateNoWindow = true
+                        StartInfo = new ProcessStartInfo("cmd", "sdelete -p 2 -r -s -nobanner " + file_path)
+                        {
+                            RedirectStandardOutput = true,
+                            UseShellExecute = false,
+                            CreateNoWindow = true
+                        }
                     };
                     p.Start();
                     p.WaitForExit();
@@ -63,7 +65,7 @@ namespace one_time_pad_tool
             }
         }
 
-        public static void EncryptFile(string file_path, string out_path, string pad_path, bool base64Pad = false)
+        public static bool EncryptFile(string file_path, string out_path, string pad_path, bool base64Pad = false)
         {
             try
             {
@@ -87,10 +89,13 @@ namespace one_time_pad_tool
                     encrypted_byte_bits.CopyTo(encrypted_byte, 0);
                     encrypted_file.Write(encrypted_byte);
                 }
+
+                return true;
             }
             catch (Exception e)
             {
                 Console.WriteLine("Failed to encrypt file: " + e);
+                return false;
             }
         }
 
