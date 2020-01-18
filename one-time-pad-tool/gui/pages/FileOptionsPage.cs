@@ -34,7 +34,7 @@ namespace one_time_pad_tool.pages
  
             if (deletefile_option != 2)
             {
-                args[4] = deletefile_option.ToString();
+                args[3] = deletefile_option.ToString();
             }
             else
             {

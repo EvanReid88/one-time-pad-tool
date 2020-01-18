@@ -33,7 +33,14 @@ namespace one_time_pad_tool
         }
 
         // TODO 
-        //public void ConvertPadToBase64()
+        public static void ConvertPadToBase64(string pad_path)
+        {
+            byte[] pad = File.ReadAllBytes(pad_path);
+            string pad_base64 = Convert.ToBase64String(pad);
+            File.WriteAllText(Path.GetDirectoryName(pad_path) +"\\" + Path.GetFileNameWithoutExtension(pad_path) + "_base64.txt", pad_base64);
+            SecureDelete(pad_path);
+        }
+
         //public void ConvertPadToBytes
 
         public static void SecureDelete(string file_path)
@@ -45,7 +52,6 @@ namespace one_time_pad_tool
             {
                 try
                 {
-                    //Process p = new Process();
                     ProcessStartInfo StartInfo = new ProcessStartInfo("sdelete", "-p 2 -r -s -nobanner " + file_path)
                     {
                         RedirectStandardOutput = false,
@@ -54,10 +60,6 @@ namespace one_time_pad_tool
                     };
                     Process p = Process.Start(StartInfo);
                     p.WaitForExit();
-                    //if (p != null)
-                    //{
-                    //    p.WaitForExit();
-                    //}
                 }
                 catch (Exception e)
                 {
@@ -73,9 +75,10 @@ namespace one_time_pad_tool
             {
                 // TODO pass bool to generatepad. generate pad will save key on disk and then this fn will open it up for reading
 
+                string pad_name = Path.GetFileNameWithoutExtension(file_path) + "_pad" + Path.GetExtension(file_path);
                 // TODO get file extension from path to determine names
                 using FileStream original_file = new FileStream(file_path, FileMode.Open, FileAccess.Read);
-                using FileStream pad_file = GeneratePad((int)original_file.Length, pad_path + "test_pad.pdf");
+                using FileStream pad_file = GeneratePad((int)original_file.Length, pad_path + pad_name);
                 using FileStream encrypted_file = new FileStream(out_path + "encrypted_test.pdf", FileMode.Create);
 
                 int file_byte, pad_byte;

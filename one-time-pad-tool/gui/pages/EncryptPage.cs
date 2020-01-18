@@ -1,6 +1,7 @@
 ﻿using EasyConsoleCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading;
 
@@ -29,6 +30,12 @@ namespace one_time_pad_tool.pages
             OneTimePad.EncryptFile(args[0], args[1], args[2]);
 
             if (Int32.Parse(args[4]) == 0)
+            {
+                string pad_path = args[2] + Path.GetFileNameWithoutExtension(args[0]) + "_pad" + Path.GetExtension(args[0]);
+                OneTimePad.ConvertPadToBase64(pad_path);
+            }
+
+            if (Int32.Parse(args[3]) == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\nSecurely Deleting Original File...");

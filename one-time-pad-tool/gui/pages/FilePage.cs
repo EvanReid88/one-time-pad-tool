@@ -34,28 +34,15 @@ namespace one_time_pad_tool.pages
             // TODO validate path input, navigate back if user types "back"
             Console.WriteLine("\n" + enter_file_path);
 
-            //Console.ForegroundColor = ConsoleColor.Cyan;
-            //args[0] = Path.GetFullPath(Console.ReadLine());
-            //Console.ForegroundColor = ConsoleColor.White;
-
             args[0] = ValidateFilePath(enter_file_path);
 
-            // TODO validate path input
             Console.WriteLine("\n" + enter_outfile_path);
 
             args[1] = ValidateDirectoryPath(enter_outfile_path);
-            //Console.ForegroundColor = ConsoleColor.Cyan;
-            //args[1] = Path.GetFullPath(Console.ReadLine());
-            //Console.ForegroundColor = ConsoleColor.White;
 
-            // TODO validate path input
             Console.WriteLine("\n" + enter_pad_path);
 
             args[2] = ValidateDirectoryPath(enter_pad_path);
-
-            //Console.ForegroundColor = ConsoleColor.Cyan;
-            //args[2] = Path.GetFullPath(Console.ReadLine());
-            //Console.ForegroundColor = ConsoleColor.White;
 
             Program.AddPage(new FileOptionsPage(Program, args));
             Program.NavigateTo<FileOptionsPage>();
@@ -63,13 +50,21 @@ namespace one_time_pad_tool.pages
 
         public string ValidateFilePath(string desc)
         {
+
             bool valid = false;
             string path = "";
 
             while (!valid)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                path = Path.GetFullPath(Console.ReadLine());
+
+                string input = Console.ReadLine();
+                if (input.ToLower() == "back")
+                {
+                    Program.NavigateBack();
+                    return "";
+                }
+                path = Path.GetFullPath(input);
 
                 if (File.Exists(path))
                 {
@@ -91,15 +86,22 @@ namespace one_time_pad_tool.pages
 
         public string ValidateDirectoryPath(string desc)
         {
+
             bool valid = false;
             string path = "";
 
             while (!valid)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                path = Path.GetFullPath(Console.ReadLine());
+                string input = Console.ReadLine();
+                if (input.ToLower() == "back")
+                {
+                    Program.NavigateBack();
+                    return "";
+                }
+                path = Path.GetFullPath(input);
 
-                if (Directory.Exists(path))
+                if (Directory.Exists(path) && (path.EndsWith("/") || path.EndsWith("\\") || path.EndsWith("\\\\")))
                 {
                     valid = true;
                 }
