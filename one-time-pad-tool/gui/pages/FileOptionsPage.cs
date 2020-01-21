@@ -19,8 +19,10 @@ namespace one_time_pad_tool.pages
 
         public override void Display()
         {
+            // TODO adjust for decryption option args[0]
+
             base.Display();
-            // TODO make into method
+
             string breadcrumb = null;
             foreach (var title in Program.History.Select((page) => page.Title).Reverse())
                 breadcrumb += title + " > ";
@@ -34,7 +36,7 @@ namespace one_time_pad_tool.pages
  
             if (deletefile_option != 2)
             {
-                args[3] = deletefile_option.ToString();
+                args[4] = deletefile_option.ToString();
             }
             else
             {

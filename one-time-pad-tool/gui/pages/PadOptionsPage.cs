@@ -27,12 +27,12 @@ namespace one_time_pad_tool.pages
 
             string[] options = { "Yes", "No", "Back" };
 
-            string header_padoptions = breadcrumb + "\n---\n\nSave pad as base64 string? (Deletes raw byte pad)\n";
+            string header_padoptions = breadcrumb + "\n---\n\nSave pad as base64 string?\n";
             int pad_option = ConsoleHelper.MultipleChoice(true, options, header_padoptions);
 
             if (pad_option != 2)
             {
-                args[4] = pad_option.ToString();
+                args[5] = pad_option.ToString();
             }
             else
             {

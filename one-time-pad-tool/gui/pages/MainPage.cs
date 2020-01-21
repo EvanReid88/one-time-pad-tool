@@ -14,19 +14,15 @@ namespace one_time_pad_tool.pages
         public override void Display()
         {
             base.Display();
-
             Console.ForegroundColor = ConsoleColor.White;
+
+            string[] args = new string[6];
+  
             string[] options = new string[] { "OTP Encrypt", "OTP Decrypt", "Exit" };
-            int option = ConsoleHelper.MultipleChoice(true, options, this.Title + "\n---\n");
+            args[0] = ConsoleHelper.MultipleChoice(true, options, this.Title + "\n---\n").ToString();
 
-            if (option == 0)
-            {
-                Program.NavigateTo<FilePage>();
-            } 
-            //else
-            //{
-
-            //}
+            Program.AddPage(new FilePage(Program, args));
+            Program.NavigateTo<FilePage>();
         }
     }
 }

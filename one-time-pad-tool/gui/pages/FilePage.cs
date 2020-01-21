@@ -1,4 +1,5 @@
 ﻿using EasyConsoleCore;
+using one_time_pad_tool.gui;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,24 +9,32 @@ namespace one_time_pad_tool.pages
 {
     class FilePage : Page
     {
-        public FilePage(Program program)
-            : base("Encrypt", program) {
+        private string[] args;
+        public FilePage(Program program, string[] args)
+            : base("File Paths", program) {
+
+            this.args = args;
         }
 
         public override void Display()
         {
             base.Display();
 
-            string[] args = new string[5];
+            string enter_file_path;
+            string enter_pad_path;
+            string enter_outfile_path;
 
-            string enter_file_path = "Enter path of file to encrypt: ";
-            string enter_pad_path = "Enter path of directory to save one-time-pad: ";
-            string enter_outfile_path = "Enter path of directory to save encrypted file: ";
-
-            // for decryption
-            //        enter_file_path = "Enter path of file to decrypt: ";
-            //        enter_pad_path = "Enter one-time-pad file path";
-            //        enter_outfile_path = "Enter path of directory to save decrypted file";
+            if (Int32.Parse(args[0]) == 0)
+            {
+                enter_file_path = "Enter path of file to encrypt: ";
+                enter_pad_path = "Enter path of directory to save one-time-pad: ";
+                enter_outfile_path = "Enter path of directory to save encrypted file: ";
+            } else
+            {
+                enter_file_path = "Enter path of file to decrypt: ";
+                enter_pad_path = "Enter one-time-pad file path: ";
+                enter_outfile_path = "Enter path of directory to save decrypted file";
+            }
 
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nType 'back' to return");
@@ -34,21 +43,21 @@ namespace one_time_pad_tool.pages
             // TODO validate path input, navigate back if user types "back"
             Console.WriteLine("\n" + enter_file_path);
 
-            args[0] = ValidateFilePath(enter_file_path);
+            args[1] = ValidatePath(enter_file_path);
 
             Console.WriteLine("\n" + enter_outfile_path);
 
-            args[1] = ValidateDirectoryPath(enter_outfile_path);
+            args[2] = ValidatePath(enter_outfile_path, true);
 
             Console.WriteLine("\n" + enter_pad_path);
 
-            args[2] = ValidateDirectoryPath(enter_pad_path);
+            args[3] = ValidatePath(enter_pad_path, true);
 
             Program.AddPage(new FileOptionsPage(Program, args));
             Program.NavigateTo<FileOptionsPage>();
         }
 
-        public string ValidateFilePath(string desc)
+        public string ValidatePath(string desc, bool isDir = false)
         {
 
             bool valid = false;
@@ -66,17 +75,20 @@ namespace one_time_pad_tool.pages
                 }
                 path = Path.GetFullPath(input);
 
-                if (File.Exists(path))
+                bool pathExists = isDir ? Directory.Exists(path) && (path.EndsWith("/") || path.EndsWith("\\") || path.EndsWith("\\\\"))
+                                        : File.Exists(path);
+                if (pathExists)
                 {
                     valid = true;
-                } 
+                }
                 else
                 {
-                    ClearCurrentConsoleLine();
+                    ConsoleHelper.ClearConsoleInvalidInput(desc);
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write(desc);
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("Ensure file path is valid\n");
+                    string pathtype = isDir ? "directory" : "file";
+                    Console.Write("Ensure " + pathtype + " path is valid\n");
                 }
             }
             Console.ForegroundColor = ConsoleColor.White;
@@ -84,52 +96,5 @@ namespace one_time_pad_tool.pages
             return path;
         }
 
-        public string ValidateDirectoryPath(string desc)
-        {
-
-            bool valid = false;
-            string path = "";
-
-            while (!valid)
-            {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                string input = Console.ReadLine();
-                if (input.ToLower() == "back")
-                {
-                    Program.NavigateBack();
-                    return "";
-                }
-                path = Path.GetFullPath(input);
-
-                if (Directory.Exists(path) && (path.EndsWith("/") || path.EndsWith("\\") || path.EndsWith("\\\\")))
-                {
-                    valid = true;
-                }
-                else
-                {
-                    // TODO make into helper method
-                    ClearCurrentConsoleLine();
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write(desc);
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("Ensure directory path is valid\n");
-                }
-            }
-            Console.ForegroundColor = ConsoleColor.White;
-
-            return path;
-        }
-
-        public static void ClearCurrentConsoleLine()
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop - 1);
-                int currentLineCursor = Console.CursorTop;
-                Console.SetCursorPosition(0, Console.CursorTop);
-                Console.Write(new string(' ', Console.WindowWidth));
-                Console.SetCursorPosition(0, currentLineCursor);
-            }
-        }
     }
 }
