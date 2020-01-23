@@ -51,7 +51,7 @@ namespace one_time_pad_tool.pages
 
             Console.WriteLine("\n" + enter_pad_path);
 
-            args[3] = ValidatePath(enter_pad_path, true);
+            args[3] = ValidatePath(enter_pad_path, Int32.Parse(args[0]) == 0);
 
             Program.AddPage(new FileOptionsPage(Program, args));
             Program.NavigateTo<FileOptionsPage>();
@@ -73,7 +73,9 @@ namespace one_time_pad_tool.pages
                     Program.NavigateBack();
                     return "";
                 }
+                // TODO check if input is not empty
                 path = Path.GetFullPath(input);
+
 
                 bool pathExists = isDir ? Directory.Exists(path) && (path.EndsWith("/") || path.EndsWith("\\") || path.EndsWith("\\\\"))
                                         : File.Exists(path);

@@ -28,10 +28,11 @@ namespace one_time_pad_tool.pages
                 breadcrumb += title + " > ";
             breadcrumb = breadcrumb.Remove(breadcrumb.Length - 3);
 
+            // TODO ask to delete pad
 
             string[] options = { "Yes", "No", "Back" };
-
-            string header_deletefile = breadcrumb + "\n---\n\nDelete original file? (Cannot be undone)\n";
+            string header_text = Int32.Parse(args[0]) == 0 ? "original" : "encrypted";
+            string header_deletefile = breadcrumb + "\n---\n\nDelete " + header_text + " file? (Cannot be undone)\n";
             int deletefile_option = ConsoleHelper.MultipleChoice(true, options, header_deletefile);
  
             if (deletefile_option != 2)

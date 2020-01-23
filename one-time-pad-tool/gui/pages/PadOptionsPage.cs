@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using one_time_pad_tool.gui;
+using one_time_pad_tool.gui.pages;
 
 namespace one_time_pad_tool.pages
 {
@@ -27,7 +28,8 @@ namespace one_time_pad_tool.pages
 
             string[] options = { "Yes", "No", "Back" };
 
-            string header_padoptions = breadcrumb + "\n---\n\nSave pad as base64 string?\n";
+            string header_text = Int32.Parse(args[0]) == 0 ? "Save pad as base64 string?" : "Decrypt with base64 string pad?";
+            string header_padoptions = breadcrumb + "\n---\n\n" + header_text + "\n";
             int pad_option = ConsoleHelper.MultipleChoice(true, options, header_padoptions);
 
             if (pad_option != 2)
@@ -39,8 +41,15 @@ namespace one_time_pad_tool.pages
                 Program.NavigateBack();
             }
 
-            Program.AddPage(new EncryptPage(Program, args));
-            Program.NavigateTo<EncryptPage>();
+            if (Int32.Parse(args[0]) == 0) {
+                Program.AddPage(new EncryptPage(Program, args));
+                Program.NavigateTo<EncryptPage>();
+            }
+            else
+            {
+                Program.AddPage(new DecryptPage(Program, args));
+                Program.NavigateTo<DecryptPage>();
+            }
         }
     }
 }

@@ -12,8 +12,7 @@ namespace one_time_pad_tool.pages
 
         private string[] args;
 
-        public EncryptPage(Program program, string[] args)
-            : base("Encrypt", program)
+        public EncryptPage(Program program, string[] args) : base("Encrypt", program)
         {
             this.args = args;
         }
@@ -40,7 +39,7 @@ namespace one_time_pad_tool.pages
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\nSecurely Deleting Original File...");
                 Console.ForegroundColor = ConsoleColor.White;
-                OneTimePad.SecureDelete(args[0]);
+                OneTimePad.SecureDelete(args[1]);
             }
 
             Console.ForegroundColor = ConsoleColor.Green;
