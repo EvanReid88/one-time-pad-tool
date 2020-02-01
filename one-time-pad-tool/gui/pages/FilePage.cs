@@ -33,7 +33,7 @@ namespace one_time_pad_tool.pages
             {
                 enter_file_path = "Enter path of file to decrypt: ";
                 enter_pad_path = "Enter one-time-pad file path: ";
-                enter_outfile_path = "Enter path of directory to save decrypted file";
+                enter_outfile_path = "Enter path of directory to save decrypted file: ";
             }
 
             Console.ForegroundColor = ConsoleColor.Red;
@@ -59,7 +59,6 @@ namespace one_time_pad_tool.pages
 
         public string ValidatePath(string desc, bool isDir = false)
         {
-
             bool valid = false;
             string path = "";
 
@@ -74,8 +73,10 @@ namespace one_time_pad_tool.pages
                     return "";
                 }
                 // TODO check if input is not empty
-                path = Path.GetFullPath(input);
-
+                if (input != "")
+                {
+                    path = Path.GetFullPath(input);
+                }
 
                 bool pathExists = isDir ? Directory.Exists(path) && (path.EndsWith("/") || path.EndsWith("\\") || path.EndsWith("\\\\"))
                                         : File.Exists(path);
@@ -85,7 +86,7 @@ namespace one_time_pad_tool.pages
                 }
                 else
                 {
-                    ConsoleHelper.ClearConsoleInvalidInput(desc);
+                    //ConsoleHelper.ClearConsoleInvalidInput(desc);
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write(desc);
                     Console.ForegroundColor = ConsoleColor.Red;

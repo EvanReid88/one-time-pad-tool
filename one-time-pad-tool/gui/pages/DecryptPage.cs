@@ -16,6 +16,11 @@ namespace one_time_pad_tool.gui.pages
 
         public override void Display()
         {
+            // TODO allow for base64 string key
+            // TODO externalize strings
+            // TODOn create enums for arguments
+            // TODO close program on main menu exit
+           
             base.Display();
 
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -23,6 +28,22 @@ namespace one_time_pad_tool.gui.pages
             Console.ForegroundColor = ConsoleColor.White;
 
             OneTimePad.DecryptFile(args[1], args[2], args[3]);
+
+            if (Int32.Parse(args[4]) == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\nSecurely Deleting Encrypted File...");
+                Console.ForegroundColor = ConsoleColor.White;
+                OneTimePad.SecureDelete(args[1]);
+            }
+
+            if (Int32.Parse(args[7]) == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\nSecurely Deleting Pad File...");
+                Console.ForegroundColor = ConsoleColor.White;
+                OneTimePad.SecureDelete(args[2]);
+            }
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nDone!\n");

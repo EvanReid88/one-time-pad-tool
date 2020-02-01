@@ -16,7 +16,7 @@ namespace one_time_pad_tool.pages
             base.Display();
             Console.ForegroundColor = ConsoleColor.White;
 
-            string[] args = new string[6];
+            string[] args = new string[7];
   
             string[] options = new string[] { "OTP Encrypt", "OTP Decrypt", "Exit" };
             args[0] = ConsoleHelper.MultipleChoice(true, options, this.Title + "\n---\n").ToString();

@@ -44,6 +44,21 @@ namespace one_time_pad_tool.pages
                 Program.NavigateBack();
             }
 
+            if (Int32.Parse(args[0]) == 1)
+            {
+                string header_deletepad = breadcrumb + "\n---\n\nDelete pad? (Cannot be undone)";
+                int deletepad_option = ConsoleHelper.MultipleChoice(true, options, header_deletepad);
+
+                if (deletepad_option != 2)
+                {
+                    args[7] = deletepad_option.ToString();
+                }
+                else
+                {
+                    Program.NavigateBack();
+                }
+            }
+
             Program.AddPage(new PadOptionsPage(Program, args));
             Program.NavigateTo<PadOptionsPage>();
         }

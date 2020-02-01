@@ -72,17 +72,5 @@ namespace one_time_pad_tool.gui
 
             return (int)curItem;
         }
-
-        public static void ClearConsoleInvalidInput(string desc)
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop - 1);
-                int currentLineCursor = Console.CursorTop;
-                Console.SetCursorPosition(0, Console.CursorTop);
-                Console.Write(new string(' ', Console.WindowWidth));
-                Console.SetCursorPosition(0, currentLineCursor);
-            }
-        }
     }
 }
