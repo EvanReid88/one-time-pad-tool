@@ -27,7 +27,7 @@ namespace one_time_pad_tool.pages
             Console.ForegroundColor = ConsoleColor.White;
 
             OneTimePad.EncryptFile(args[1], args[2], args[3]);
-
+    
             if (Int32.Parse(args[5]) == 0)
             {
                 string pad_path = args[2] + Path.GetFileNameWithoutExtension(args[1]) + "_pad" + Path.GetExtension(args[1]);

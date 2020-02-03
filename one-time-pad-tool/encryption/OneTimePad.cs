@@ -32,13 +32,22 @@ namespace one_time_pad_tool
             return fs;
         }
 
-        // TODO 
+        // TODO add test try blocks
         public static void ConvertPadToBase64(string pad_path)
         {
             byte[] pad = File.ReadAllBytes(pad_path);
             string pad_base64 = Convert.ToBase64String(pad);
             File.WriteAllText(Path.GetDirectoryName(pad_path) +"\\" + Path.GetFileNameWithoutExtension(pad_path) + "_base64.txt", pad_base64);
             SecureDelete(pad_path);
+        }
+
+        // TODO return byte array or byte stream, don't save new file
+        public static void ConvertBase64PadToBytes(string pad_path)
+        {
+            string pad_base64 = File.ReadAllText(pad_path);
+            byte[] pad = Convert.FromBase64String(pad_base64);
+            File.WriteAllBytes(Path.GetDirectoryName(pad_path) + "\\" + Path.GetFileNameWithoutExtension(pad_path) + ".txt", pad); // TODO get original file extension
+            //SecureDelete(pad_path);
         }
 
         //public void ConvertPadToBytes
@@ -108,6 +117,12 @@ namespace one_time_pad_tool
         {
             try
             {
+
+                if (base64Pad)
+                {
+                    ConvertBase64PadToBytes(pad_path);
+                }
+
                 using FileStream encrypted_file = new FileStream(file_path, FileMode.Open, FileAccess.Read);
                 using FileStream pad_file = new FileStream(pad_path, FileMode.Open, FileAccess.Read);
                 using FileStream decrypted_file = new FileStream(out_path + "testpdf_decrypted.pdf", FileMode.Create);

@@ -40,7 +40,6 @@ namespace one_time_pad_tool.pages
             Console.WriteLine("\nType 'back' to return");
             Console.ForegroundColor = ConsoleColor.White;
 
-            // TODO validate path input, navigate back if user types "back"
             Console.WriteLine("\n" + enter_file_path);
 
             args[1] = ValidatePath(enter_file_path);
@@ -86,7 +85,6 @@ namespace one_time_pad_tool.pages
                 }
                 else
                 {
-                    //ConsoleHelper.ClearConsoleInvalidInput(desc);
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write(desc);
                     Console.ForegroundColor = ConsoleColor.Red;

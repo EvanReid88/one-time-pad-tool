@@ -16,10 +16,14 @@ namespace one_time_pad_tool.gui.pages
 
         public override void Display()
         {
+            // TODO ASK DELETION STEPS AFTER ENCRYPTION!!!!!
+            // TODO ask for pad path before out path
             // TODO allow for base64 string key
+            // TODO provide user some information about file paths
             // TODO externalize strings
-            // TODOn create enums for arguments
+            // TODO create enums for arguments
             // TODO close program on main menu exit
+            // TODO create installer
            
             base.Display();
 
@@ -27,7 +31,14 @@ namespace one_time_pad_tool.gui.pages
             Console.WriteLine("\nDecrypting...");
             Console.ForegroundColor = ConsoleColor.White;
 
-            OneTimePad.DecryptFile(args[1], args[2], args[3]);
+            if (Int32.Parse(args[5]) == 0)
+            {
+                OneTimePad.DecryptFile(args[1], args[2], args[3], true);
+            } 
+            else
+            {
+                OneTimePad.DecryptFile(args[1], args[2], args[3]);
+            }
 
             if (Int32.Parse(args[4]) == 0)
             {
@@ -37,7 +48,7 @@ namespace one_time_pad_tool.gui.pages
                 OneTimePad.SecureDelete(args[1]);
             }
 
-            if (Int32.Parse(args[7]) == 0)
+            if (Int32.Parse(args[6]) == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\nSecurely Deleting Pad File...");

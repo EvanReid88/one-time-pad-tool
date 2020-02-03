@@ -44,6 +44,8 @@ namespace one_time_pad_tool.pages
                 Program.NavigateBack();
             }
 
+
+            // TODO fix exception. Perhaps move to pad options 
             if (Int32.Parse(args[0]) == 1)
             {
                 string header_deletepad = breadcrumb + "\n---\n\nDelete pad? (Cannot be undone)";
@@ -51,7 +53,7 @@ namespace one_time_pad_tool.pages
 
                 if (deletepad_option != 2)
                 {
-                    args[7] = deletepad_option.ToString();
+                    args[6] = deletepad_option.ToString();
                 }
                 else
                 {
