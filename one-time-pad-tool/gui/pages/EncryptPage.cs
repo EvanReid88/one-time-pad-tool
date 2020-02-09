@@ -21,35 +21,42 @@ namespace one_time_pad_tool.pages
         {
             base.Display();
 
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\nPress any any key to begin encryption...");
+            Console.ReadLine();
+
             // TODO make global print with colors method
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\nEncrypting..."); // TODO spinner
+            Console.WriteLine("Encrypting..."); // TODO spinner
             Console.ForegroundColor = ConsoleColor.White;
 
             OneTimePad.EncryptFile(args[1], args[2], args[3]);
     
-            if (Int32.Parse(args[5]) == 0)
-            {
-                string pad_path = args[2] + Path.GetFileNameWithoutExtension(args[1]) + "_pad" + Path.GetExtension(args[1]);
-                OneTimePad.ConvertPadToBase64(pad_path);
-            }
+            //if (Int32.Parse(args[5]) == 0)
+            //{
+            //    string pad_path = args[2] + Path.GetFileNameWithoutExtension(args[1]) + "_pad" + Path.GetExtension(args[1]);
+            //    OneTimePad.ConvertPadToBase64(pad_path);
+            //}
 
-            if (Int32.Parse(args[4]) == 0)
-            {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("\nSecurely Deleting Original File...");
-                Console.ForegroundColor = ConsoleColor.White;
-                OneTimePad.SecureDelete(args[1]);
-            }
+            //if (Int32.Parse(args[4]) == 0)
+            //{
+            //    Console.ForegroundColor = ConsoleColor.Cyan;
+            //    Console.WriteLine("\nSecurely Deleting Original File...");
+            //    Console.ForegroundColor = ConsoleColor.White;
+            //    OneTimePad.SecureDelete(args[1]);
+            //}
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nDone!\n");
 
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Press any key to return home");
+            Console.WriteLine("Press any key to continue...");
             Console.ReadLine();
 
-            Program.NavigateHome();
+            Program.AddPage(new PadOptionsPage(Program, args));
+            Program.NavigateTo<PadOptionsPage>();
+
+            //Program.NavigateHome();
         }
     }
 }

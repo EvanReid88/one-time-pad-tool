@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using one_time_pad_tool.gui;
+using one_time_pad_tool.core.helpers;
 
 namespace one_time_pad_tool.pages
 {
@@ -30,39 +31,56 @@ namespace one_time_pad_tool.pages
 
             // TODO ask to delete pad
 
-            string[] options = { "Yes", "No", "Back" };
+            string[] options = { "Yes", "No" };
             string header_text = Int32.Parse(args[0]) == 0 ? "original" : "encrypted";
             string header_deletefile = breadcrumb + "\n---\n\nDelete " + header_text + " file? (Cannot be undone)\n";
             int deletefile_option = ConsoleHelper.MultipleChoice(true, options, header_deletefile);
- 
-            if (deletefile_option != 2)
-            {
-                args[4] = deletefile_option.ToString();
-            }
-            else
-            {
-                Program.NavigateBack();
-            }
 
+            Console.Clear();
+            base.Display();
 
-            // TODO fix exception. Perhaps move to pad options 
-            if (Int32.Parse(args[0]) == 1)
+            if (deletefile_option == 0)
             {
-                string header_deletepad = breadcrumb + "\n---\n\nDelete pad? (Cannot be undone)";
-                int deletepad_option = ConsoleHelper.MultipleChoice(true, options, header_deletepad);
-
-                if (deletepad_option != 2)
-                {
-                    args[6] = deletepad_option.ToString();
-                }
-                else
-                {
-                    Program.NavigateBack();
-                }
+                FileHelper.SecureDelete(args[1]);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\nFile Deleted.");
             }
 
-            Program.AddPage(new PadOptionsPage(Program, args));
-            Program.NavigateTo<PadOptionsPage>();
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\nPress any key to return home...");
+            Console.ReadLine();
+
+            Program.NavigateHome();
+
+            //if (deletefile_option != 2)
+            //{
+            //    args[4] = deletefile_option.ToString();
+            //}
+            //else
+            //{
+            //    Program.NavigateBack();
+            //}
+
+
+            //// TODO fix exception. Perhaps move to pad options 
+            //if (Int32.Parse(args[0]) == 1)
+            //{
+            //    string header_deletepad = breadcrumb + "\n---\n\nDelete pad? (Cannot be undone)";
+            //    int deletepad_option = ConsoleHelper.MultipleChoice(true, options, header_deletepad);
+
+            //    if (deletepad_option != 2)
+            //    {
+            //        args[6] = deletepad_option.ToString();
+            //    }
+            //    else
+            //    {
+            //        Program.NavigateBack();
+            //    }
+            //}
+
+            //Program.AddPage(new PadOptionsPage(Program, args));
+            //Program.NavigateTo<PadOptionsPage>();
         }
     }
 }

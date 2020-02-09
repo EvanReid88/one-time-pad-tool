@@ -1,5 +1,6 @@
 ﻿using EasyConsoleCore;
 using one_time_pad_tool.gui;
+using one_time_pad_tool.gui.pages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,16 +45,27 @@ namespace one_time_pad_tool.pages
 
             args[1] = ValidatePath(enter_file_path);
 
-            Console.WriteLine("\n" + enter_outfile_path);
-
-            args[2] = ValidatePath(enter_outfile_path, true);
-
             Console.WriteLine("\n" + enter_pad_path);
 
             args[3] = ValidatePath(enter_pad_path, Int32.Parse(args[0]) == 0);
 
-            Program.AddPage(new FileOptionsPage(Program, args));
-            Program.NavigateTo<FileOptionsPage>();
+            Console.WriteLine("\n" + enter_outfile_path);
+
+            args[2] = ValidatePath(enter_outfile_path, true);
+
+            if (Int32.Parse(args[0]) == 0)
+            {
+                Program.AddPage(new EncryptPage(Program, args));
+                Program.NavigateTo<EncryptPage>();
+            }
+            else
+            {
+                Program.AddPage(new DecryptPage(Program, args));
+                Program.NavigateTo<DecryptPage>();
+            }
+
+            //Program.AddPage(new FileOptionsPage(Program, args));
+            //Program.NavigateTo<FileOptionsPage>();
         }
 
         public string ValidatePath(string desc, bool isDir = false)
