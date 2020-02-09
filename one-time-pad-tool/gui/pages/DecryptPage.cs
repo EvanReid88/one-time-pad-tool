@@ -53,7 +53,7 @@ namespace one_time_pad_tool.gui.pages
 
             if (FileHelper.CheckFileBase64(args[3]))
             {
-                OneTimePad.DecryptFile(args[1], args[2], args[3], true);
+                OneTimePad.DecryptFileBase64Pad(args[1], args[2], args[3]);
             } 
             else
             {
