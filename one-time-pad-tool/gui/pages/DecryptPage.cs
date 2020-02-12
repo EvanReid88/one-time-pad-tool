@@ -51,14 +51,38 @@ namespace one_time_pad_tool.gui.pages
             Console.WriteLine("Decrypting...");
             Console.ForegroundColor = ConsoleColor.White;
 
-            if (FileHelper.CheckFileBase64(args[3]))
+            try
             {
-                OneTimePad.DecryptFileBase64Pad(args[1], args[2], args[3]);
-            } 
-            else
-            {
-                OneTimePad.DecryptFile(args[1], args[2], args[3]);
+                if (FileHelper.CheckFileBase64(args[3]))
+                {
+                    OneTimePad.DecryptFileBase64Pad(args[1], args[2], args[3]);
+                }
+                else
+                {
+                    OneTimePad.DecryptFile(args[1], args[2], args[3]);
+                }
             }
+            catch
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("\nPress any key to return home...");
+                Console.ReadLine();
+
+                Program.NavigateHome();
+            }
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nDone!\n");
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Press any key to return continue...");
+            Console.ReadLine();
+
+            // TODO ask to delete pad, then delete encrypted file0
+
+            Program.AddPage(new PadOptionsPage(Program, args));
+            Program.NavigateTo<PadOptionsPage>();
+
 
             //if (Int32.Parse(args[4]) == 0)
             //{
@@ -76,15 +100,7 @@ namespace one_time_pad_tool.gui.pages
             //    OneTimePad.SecureDelete(args[2]);
             //}
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nDone!\n");
 
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Press any key to return continue...");
-            Console.ReadLine();
-
-            Program.AddPage(new FileOptionsPage(Program, args));
-            Program.NavigateTo<FileOptionsPage>();
             //Program.NavigateHome();
         }
     }

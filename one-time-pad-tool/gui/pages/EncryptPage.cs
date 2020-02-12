@@ -30,8 +30,20 @@ namespace one_time_pad_tool.pages
             Console.WriteLine("Encrypting..."); // TODO spinner
             Console.ForegroundColor = ConsoleColor.White;
 
-            OneTimePad.EncryptFile(args[1], args[2], args[3]);
-    
+            try
+            {
+                OneTimePad.EncryptFile(args[1], args[2], args[3]);
+
+            }
+            catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("\nPress any key to return home...");
+                Console.ReadLine();
+
+                Program.NavigateHome();
+            }
+
             //if (Int32.Parse(args[5]) == 0)
             //{
             //    string pad_path = args[2] + Path.GetFileNameWithoutExtension(args[1]) + "_pad" + Path.GetExtension(args[1]);
@@ -45,16 +57,6 @@ namespace one_time_pad_tool.pages
             //    Console.ForegroundColor = ConsoleColor.White;
             //    OneTimePad.SecureDelete(args[1]);
             //}
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nDone!\n");
-
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadLine();
-
-            Program.AddPage(new PadOptionsPage(Program, args));
-            Program.NavigateTo<PadOptionsPage>();
 
             //Program.NavigateHome();
         }
