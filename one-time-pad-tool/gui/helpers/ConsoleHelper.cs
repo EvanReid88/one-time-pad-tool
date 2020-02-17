@@ -1,13 +1,8 @@
-﻿using EasyConsoleCore;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System;
 
 namespace one_time_pad_tool.gui
 {
-    public class ConsoleHelper
+    public class ConsoleHelper 
     {
         // source: https://www.dreamincode.net/forums/topic/365540-Console-Menu-with-Arrowkeys/
         public static int MultipleChoice(bool canCancel, string[] menuItems, string menu_title)

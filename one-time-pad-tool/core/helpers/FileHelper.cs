@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Text.RegularExpressions;
-using one_time_pad_tool.contracts.core.helpers;
 
 namespace one_time_pad_tool.core.helpers
 {
-    class FileHelper : IFileHelper
+    class FileHelper 
     {
         static FileHelper() { }
 

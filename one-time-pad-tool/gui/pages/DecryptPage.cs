@@ -2,8 +2,6 @@
 using one_time_pad_tool.core.helpers;
 using one_time_pad_tool.pages;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace one_time_pad_tool.gui.pages
 {

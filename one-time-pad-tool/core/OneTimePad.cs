@@ -1,6 +1,4 @@
-﻿using one_time_pad_tool.contracts.core;
-using one_time_pad_tool.core.helpers;
-using Org.BouncyCastle.Security;
+﻿using Org.BouncyCastle.Security;
 using System;
 using System.Collections;
 using System.IO;
@@ -10,7 +8,7 @@ namespace one_time_pad_tool
     // TODO create interface
     // TODO make async
     // https://blog.bitscry.com/2018/07/05/pgp-encryption-and-decryption-in-c/
-    class OneTimePad : IOneTimePad
+    class OneTimePad 
     {
         static OneTimePad() { }
 
