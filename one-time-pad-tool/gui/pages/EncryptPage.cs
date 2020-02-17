@@ -44,21 +44,15 @@ namespace one_time_pad_tool.pages
                 Program.NavigateHome();
             }
 
-            //if (Int32.Parse(args[5]) == 0)
-            //{
-            //    string pad_path = args[2] + Path.GetFileNameWithoutExtension(args[1]) + "_pad" + Path.GetExtension(args[1]);
-            //    OneTimePad.ConvertPadToBase64(pad_path);
-            //}
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nDone!\n");
 
-            //if (Int32.Parse(args[4]) == 0)
-            //{
-            //    Console.ForegroundColor = ConsoleColor.Cyan;
-            //    Console.WriteLine("\nSecurely Deleting Original File...");
-            //    Console.ForegroundColor = ConsoleColor.White;
-            //    OneTimePad.SecureDelete(args[1]);
-            //}
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Press any key to return continue...");
+            Console.ReadLine();
 
-            //Program.NavigateHome();
+            Program.AddPage(new PadOptionsPage(Program, args));
+            Program.NavigateTo<PadOptionsPage>();
         }
     }
 }

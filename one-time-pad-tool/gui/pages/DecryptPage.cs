@@ -24,22 +24,13 @@ namespace one_time_pad_tool.gui.pages
             // Encrypt: file paths -> encrypt -> base64 pad? -> delete original file?
             // Decrypt: file paths -> (Detect if pad is base64) -> decrypt -> (verify file contents) delete original file? -> delete pad?
 
-            // TODO detect if using base64 pad with:
-
-            //public static bool IsBase64String(string base64)
-            //{
-            //    Span<byte> buffer = new Span<byte>(new byte[base64.Length]);
-            //    return Convert.TryFromBase64String(base64, buffer, out int bytesParsed);
-            //}
-
-            // TODO ASK DELETION STEPS AFTER ENCRYPTION!!!!!
             // TODO ask for pad path before out path
-            // TODO allow for base64 string key
             // TODO provide user some information about file paths
             // TODO externalize strings
             // TODO create enums for arguments
             // TODO close program on main menu exit
             // TODO create installer
+            // TODO add error handling to deletion
 
             base.Display();
 
@@ -78,30 +69,8 @@ namespace one_time_pad_tool.gui.pages
             Console.WriteLine("Press any key to return continue...");
             Console.ReadLine();
 
-            // TODO ask to delete pad, then delete encrypted file0
-
             Program.AddPage(new PadOptionsPage(Program, args));
             Program.NavigateTo<PadOptionsPage>();
-
-
-            //if (Int32.Parse(args[4]) == 0)
-            //{
-            //    Console.ForegroundColor = ConsoleColor.Cyan;
-            //    Console.WriteLine("\nSecurely Deleting Encrypted File...");
-            //    Console.ForegroundColor = ConsoleColor.White;
-            //    OneTimePad.SecureDelete(args[1]);
-            //}
-
-            //if (Int32.Parse(args[6]) == 0)
-            //{
-            //    Console.ForegroundColor = ConsoleColor.Cyan;
-            //    Console.WriteLine("\nSecurely Deleting Pad File...");
-            //    Console.ForegroundColor = ConsoleColor.White;
-            //    OneTimePad.SecureDelete(args[2]);
-            //}
-
-
-            //Program.NavigateHome();
         }
     }
 }

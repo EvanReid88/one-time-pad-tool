@@ -63,9 +63,6 @@ namespace one_time_pad_tool.pages
                 Program.AddPage(new DecryptPage(Program, args));
                 Program.NavigateTo<DecryptPage>();
             }
-
-            //Program.AddPage(new FileOptionsPage(Program, args));
-            //Program.NavigateTo<FileOptionsPage>();
         }
 
         public string ValidatePath(string desc, bool isDir = false)
@@ -83,7 +80,7 @@ namespace one_time_pad_tool.pages
                     Program.NavigateBack();
                     return "";
                 }
-                // TODO check if input is not empty
+
                 if (input != "")
                 {
                     path = Path.GetFullPath(input);

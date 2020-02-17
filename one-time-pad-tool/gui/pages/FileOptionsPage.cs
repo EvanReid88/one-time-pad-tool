@@ -20,16 +20,12 @@ namespace one_time_pad_tool.pages
 
         public override void Display()
         {
-            // TODO adjust for decryption option args[0]
-
             base.Display();
 
             string breadcrumb = null;
             foreach (var title in Program.History.Select((page) => page.Title).Reverse())
                 breadcrumb += title + " > ";
             breadcrumb = breadcrumb.Remove(breadcrumb.Length - 3);
-
-            // TODO ask to delete pad
 
             string[] options = { "Yes", "No" };
             string header_text = Int32.Parse(args[0]) == 0 ? "original" : "encrypted";
@@ -52,35 +48,6 @@ namespace one_time_pad_tool.pages
             Console.ReadLine();
 
             Program.NavigateHome();
-
-            //if (deletefile_option != 2)
-            //{
-            //    args[4] = deletefile_option.ToString();
-            //}
-            //else
-            //{
-            //    Program.NavigateBack();
-            //}
-
-
-            //// TODO fix exception. Perhaps move to pad options 
-            //if (Int32.Parse(args[0]) == 1)
-            //{
-            //    string header_deletepad = breadcrumb + "\n---\n\nDelete pad? (Cannot be undone)";
-            //    int deletepad_option = ConsoleHelper.MultipleChoice(true, options, header_deletepad);
-
-            //    if (deletepad_option != 2)
-            //    {
-            //        args[6] = deletepad_option.ToString();
-            //    }
-            //    else
-            //    {
-            //        Program.NavigateBack();
-            //    }
-            //}
-
-            //Program.AddPage(new PadOptionsPage(Program, args));
-            //Program.NavigateTo<PadOptionsPage>();
         }
     }
 }

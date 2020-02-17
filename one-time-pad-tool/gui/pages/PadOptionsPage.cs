@@ -27,7 +27,7 @@ namespace one_time_pad_tool.pages
                 breadcrumb += title + " > ";
             breadcrumb = breadcrumb.Remove(breadcrumb.Length - 3);
 
-            string[] options = { "Yes", "No", "Back" };
+            string[] options = { "Yes", "No" };
 
             string header_text = Int32.Parse(args[0]) == 0 ? "Save pad as base64 string?" : "Delete pad? (Cannot be undone)";
             string header_padoptions = breadcrumb + "\n---\n\n" + header_text + "\n";
@@ -45,25 +45,6 @@ namespace one_time_pad_tool.pages
 
             Program.AddPage(new FileOptionsPage(Program, args));
             Program.NavigateTo<FileOptionsPage>();
-
-            //if (pad_option != 2)
-            //{
-            //    args[5] = pad_option.ToString();
-            //}
-            //else
-            //{
-            //    Program.NavigateBack();
-            //}
-
-            //if (Int32.Parse(args[0]) == 0) {
-            //    Program.AddPage(new EncryptPage(Program, args));
-            //    Program.NavigateTo<EncryptPage>();
-            //}
-            //else
-            //{
-            //    Program.AddPage(new DecryptPage(Program, args));
-            //    Program.NavigateTo<DecryptPage>();
-            //}
         }
     }
 }
