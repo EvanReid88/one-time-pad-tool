@@ -27,7 +27,7 @@ namespace one_time_pad_tool.pages
 
             // TODO make global print with colors method
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Encrypting..."); // TODO spinner
+            Console.WriteLine("Encrypting...");
             Console.ForegroundColor = ConsoleColor.White;
 
             try
