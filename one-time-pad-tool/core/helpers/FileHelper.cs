@@ -14,7 +14,7 @@ namespace one_time_pad_tool.core.helpers
         {
             bool isWindows = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
-            // TODO add linux, osx functionality
+            // TODO add linux, osx functionality for secure delete
             if (isWindows)
             {
                 try
@@ -32,7 +32,10 @@ namespace one_time_pad_tool.core.helpers
                 {
                     Console.WriteLine("Failed to delete original file using SDelete: " + e);
                 }
-
+            } 
+            else
+            {
+                File.Delete(file_path);
             }
         }
 

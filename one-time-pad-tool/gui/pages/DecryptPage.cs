@@ -16,20 +16,6 @@ namespace one_time_pad_tool.gui.pages
 
         public override void Display()
         {
-
-
-            // STEPS
-            // Encrypt: file paths -> encrypt -> base64 pad? -> delete original file?
-            // Decrypt: file paths -> (Detect if pad is base64) -> decrypt -> (verify file contents) delete original file? -> delete pad?
-
-            // TODO ask for pad path before out path
-            // TODO provide user some information about file paths
-            // TODO externalize strings
-            // TODO create enums for arguments
-            // TODO close program on main menu exit
-            // TODO create installer
-            // TODO add error handling to deletion
-
             base.Display();
 
             Console.ForegroundColor = ConsoleColor.Cyan;

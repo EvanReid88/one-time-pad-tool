@@ -1,10 +1,7 @@
 ﻿using EasyConsoleCore;
-using one_time_pad_tool.gui;
 using one_time_pad_tool.gui.pages;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace one_time_pad_tool.pages
 {
@@ -105,6 +102,5 @@ namespace one_time_pad_tool.pages
 
             return path;
         }
-
     }
 }

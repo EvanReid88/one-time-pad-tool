@@ -5,7 +5,6 @@ using System.IO;
 
 namespace one_time_pad_tool
 {
-    // TODO create interface
     // TODO make async
     // https://blog.bitscry.com/2018/07/05/pgp-encryption-and-decryption-in-c/
     class OneTimePad 

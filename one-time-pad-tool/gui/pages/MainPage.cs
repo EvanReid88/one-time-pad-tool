@@ -1,8 +1,6 @@
 ﻿using EasyConsoleCore;
 using one_time_pad_tool.gui;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace one_time_pad_tool.pages
 {

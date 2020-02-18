@@ -1,8 +1,6 @@
 ﻿using EasyConsoleCore;
 using System;
 using System.Linq;
-using System.Collections.Generic;
-using System.Text;
 using one_time_pad_tool.gui;
 using System.IO;
 using one_time_pad_tool.core.helpers;
