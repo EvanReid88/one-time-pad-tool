@@ -1,7 +1,7 @@
 # One Time Pad Encryption Tool
 
 This is a console tool created with .NET Core 3.0 for encrypting/decrypting files using a one-time-pad. 
-The program allows you to save the pads as base64 string txt files and securely deletes original files.
+The program allows you to the one-time-pad as a base64 string txt file and securely deletes original files.
 
 ## Features
 - Encrypt files with a one time pad. 
