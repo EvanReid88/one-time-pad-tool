@@ -10,33 +10,9 @@ namespace one_time_pad_tool.core.helpers
     {
         static FileHelper() { }
 
-        public static void SecureDelete(string file_path)
+        public static void SecureDelete(string file_path, bool use_sdelete = false)
         {
-            bool isWindows = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-
-            // TODO add linux, osx functionality for secure delete
-            if (isWindows)
-            {
-                try
-                {
-                    ProcessStartInfo StartInfo = new ProcessStartInfo("sdelete", "-p 2 -r -s -nobanner " + file_path)
-                    {
-                        RedirectStandardOutput = false,
-                        UseShellExecute = false,
-                        CreateNoWindow = true
-                    };
-                    Process p = Process.Start(StartInfo);
-                    p.WaitForExit();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Failed to delete original file using SDelete: " + e);
-                }
-            } 
-            else
-            {
-                File.Delete(file_path);
-            }
+            File.Delete(file_path);
         }
 
         public static void ConvertFileToBase64(string pad_path)

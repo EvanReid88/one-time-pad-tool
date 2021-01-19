@@ -9,12 +9,8 @@ The program allows you to the one-time-pad as a base64 string txt file and secur
 - Save pad as raw file (with same extension as original file)
 - Save pad as base64 encoded string in a .txt file
 - Decrypt files with a raw pad or base64 encoded .txt file pad
-- Securely delete pad and decrypted file after decryption
+- Delete pad and decrypted file after decryption
 
 ## NuGet Packages
 - BouncyCastle.NetCore
 - EasyConsoleCore
-
-## OS Specific Dependencies
-### Windows
-- SDelete 

@@ -30,6 +30,8 @@ namespace one_time_pad_tool.pages
             string header_text = Int32.Parse(args[0]) == 0 ? "Save pad as base64 string?" : "Delete pad? (Cannot be undone)";
             string header_padoptions = breadcrumb + "\n---\n\n" + header_text + "\n";
             int pad_option = ConsoleHelper.MultipleChoice(true, options, header_padoptions);
+
+            // TODO add logic for base 64 string pads (delete them)
             string pad_path = args[2] + Path.GetFileNameWithoutExtension(args[1]) + "_pad" + Path.GetExtension(args[1]);
 
             if (Int32.Parse(args[0]) == 0 && pad_option == 0)
